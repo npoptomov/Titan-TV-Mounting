@@ -1,5 +1,5 @@
 import React from 'react';
-import BootstrapButton from '../../../consts';
+import { BootstrapButton } from '../../../consts';
 
 function Placement({ data, setData, iterator, page, setPage }) {
   return (

@@ -1,26 +1,20 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-// MUI Components
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import TextField from '@material-ui/core/TextField';
-// stripe
-import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
-// Util imports
-import {makeStyles} from '@material-ui/core/styles';
-// Custom Components
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { makeStyles } from '@material-ui/core/styles';
+import { BootstrapButton, CssTextField } from '../consts';
+import { Stack } from '@mui/material';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
-      'color': '#32325d',
+      'color': '#fff',
       'fontFamily': '"Helvetica Neue", Helvetica, sans-serif',
       'fontSmoothing': 'antialiased',
       'fontSize': '16px',
-      '::placeholder': {
-        color: '#aab7c4',
+      '::helper-text': {
+        color: '#fff',
       },
     },
     invalid: {
@@ -31,10 +25,6 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 500,
-    margin: '35vh auto',
-  },
   content: {
     display: 'flex',
     flexDirection: 'column',
@@ -51,7 +41,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CheckoutForm() {
+function CheckoutForm({ total }) {
   const classes = useStyles();
   // State
   const [email, setEmail] = useState('');
@@ -66,7 +56,7 @@ function CheckoutForm() {
       return;
     }
 
-    const res = await axios.post('http://localhost:3000/pay', {email: email});
+    const res = await axios.post('http://localhost:3000/pay', { email: email, amount: total });
 
     const clientSecret = res.data['client_secret'];
 
@@ -96,31 +86,36 @@ function CheckoutForm() {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardContent className={classes.content}>
-        <TextField
-          label='Email'
-          id='outlined-email-input'
-          helperText={`Email you'll recive updates and receipts on`}
-          margin='normal'
-          variant='outlined'
-          type='email'
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          fullWidth
-        />
-        <CardElement options={CARD_ELEMENT_OPTIONS} />
-        <div className={classes.div}>
-          <Button variant="contained" color="primary" className={classes.button} onClick={handleSubmit}>
-            Pay
-          </Button>
-          <Button variant="contained" color="primary" className={classes.button}>
-            Subscription
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+    <Stack width={{ xs: "80%", md: "20%" }} >
+      <h1>Enter your payment details</h1>
+      <CssTextField
+        label='Email'
+        id='outlined-email-input'
+        helperText={`Email you'll recive updates and receipts on`}
+        margin='normal'
+        variant='outlined'
+        type='email'
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        fullWidth
+        InputLabelProps={{
+          style: { color: '#fff' },
+        }}
+        InputProps={{
+          style: {
+            color: 'white'
+          }
+        }}
+      />
+      <br />
+      <CardElement options={CARD_ELEMENT_OPTIONS} />
+<br /> <br />
+        <BootstrapButton className={classes.button} onClick={handleSubmit}>
+          Pay
+        </BootstrapButton>
+
+    </Stack>
   );
 }
 

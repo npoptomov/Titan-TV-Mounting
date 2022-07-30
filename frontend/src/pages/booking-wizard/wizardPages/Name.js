@@ -1,31 +1,61 @@
 import React from "react";
+import Box from '@mui/material/Box';
+import { Stack } from "@mui/material";
+import { CssTextField } from "../../../consts";
 
-function Name({name, setName}) {
+function Name({ name, setName, page, setPage }) {
 
   return (
-    <div>
-      <label htmlFor="text">First name</label>
-      <input
-        type="text"
-        name="first_name"
-        placeholder="First name"
-        value={name.first_name}
-        onChange={(event) => {
-          setName({ ...name, first_name: event.target.value });
-        }}
-      />
-      <br />
-      <label htmlFor="text">Last name</label>
-      <input
-        type="text"
-        name="last_name"
-        placeholder="Last name"
-        value={name.last_name}
-        onChange={(event) => {
-          setName({ ...name, last_name: event.target.value });
-        }}
-      />
-    </div>
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+
+      <Stack alignItems='center'>
+        <h1>Enter your details</h1>
+        <CssTextField
+          required
+          id="outlined-required"
+          label="First Name"
+          value={name.first_name}
+          InputLabelProps={{
+            style: { color: '#fff' },
+          }}
+          InputProps={{
+            style: {
+              color: 'white'
+            }
+          }}
+          onChange={(event) => {
+            setName({ ...name, first_name: event.target.value });
+          }}
+        />
+
+        <CssTextField
+          required
+          id="outlined-required"
+          label="Last Name"
+          value={name.last_name}
+          InputLabelProps={{
+            style: { color: '#fff' },
+          }}
+          InputProps={{
+            style: {
+              color: 'white'
+            }
+          }}
+          onChange={(event) => {
+            setName({ ...name, last_name: event.target.value });
+          }}
+        />
+
+
+      </Stack>
+    </Box>
   );
 }
 

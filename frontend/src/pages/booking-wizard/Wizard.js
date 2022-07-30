@@ -6,9 +6,7 @@ import WallType from './wizardPages/WallType';
 import Extras from './wizardPages/Extras';
 import Stack from '@mui/material/Stack';
 import { useNavigate } from "react-router-dom";
-import BootstrapButton from '../../consts';
-
-
+import { BootstrapButton } from '../../consts';
 
 function Wizard({ data, setData, total, setTotal, iterator, setIterator, page, setPage }) {
     const navigate = useNavigate();
@@ -28,6 +26,13 @@ function Wizard({ data, setData, total, setTotal, iterator, setIterator, page, s
     }
 
     const previous = () => {
+        if (page === 1)
+            setTotal(() => total - data[iterator].mount_price);
+        else if (page === 2)
+            setTotal(() => total - data[iterator].bracket_price);
+        else if (page === 4)
+            setTotal(() => total - data[iterator].wall_price);
+
         setPage((page) => page - 1);
     }
 
@@ -51,10 +56,11 @@ function Wizard({ data, setData, total, setTotal, iterator, setIterator, page, s
 
 
     return (
-        <div>
+        <React.Fragment>
+
             <h1>{question[page]}</h1>
             <br />
-            <Stack sx={{ pb: "5rem" }} spacing={5} direction="column">
+            <Stack sx={{ pb: "5rem" }} width={{ xs: "80%", md: "20%" }} spacing={5} direction="column" >
                 {pageDisplay(page)}
             </Stack>
 
@@ -62,7 +68,7 @@ function Wizard({ data, setData, total, setTotal, iterator, setIterator, page, s
                 <BootstrapButton variant="contained" style={{ display: page === 0 ? "none" : "" }} onClick={previous}>Back</BootstrapButton>
                 <BootstrapButton variant="contained" style={{ display: page != 4 ? "none" : "" }} onClick={next}>Next</BootstrapButton>
             </Stack>
-        </div>
+        </React.Fragment>
     )
 };
 

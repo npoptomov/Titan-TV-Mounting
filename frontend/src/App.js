@@ -8,7 +8,20 @@ import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements
 } from '@stripe/react-stripe-js';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Grid } from '@mui/material';
+import { styled, ThemeProvider, createTheme } from '@mui/material/styles';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: theme.palette.grey[800],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    backgroundColor: '#1A2027' 
+  },
+}));
 
 function App() {
   const [page, setPage] = useState(0);
@@ -20,15 +33,13 @@ function App() {
     bracket_price: 0,
     placement: "",
     wall_type: "",
-    wall_price: 35,
+    wall_price: 0,
     cord_hide: 0,
     cord_price: 29,
     soundbar: 0,
     soundbar_price: 49,
     shelf: 0,
     shelf_price: 49,
-    first_name: "",
-    last_name: "",
     address: "",
   }]);
 
@@ -40,7 +51,9 @@ function App() {
 
   return (
 
-      <div className="App">
+    <div className="App">
+      <BorderLinearProgress variant="determinate" value={page*15}></BorderLinearProgress>
+      <Grid container direction="column" alignItems="center" >
         <Elements stripe={stripePromise}>
           <BrowserRouter>
             <Routes>
@@ -50,7 +63,8 @@ function App() {
             </Routes>
           </BrowserRouter>
         </Elements>
-      </div>
+      </Grid>
+    </div>
 
   );
 }

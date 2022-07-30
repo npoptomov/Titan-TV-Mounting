@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BootstrapButton from '../../../consts';
+import { BootstrapButton } from '../../../consts';
 
 function Extras({ data, setData, total, setTotal, iterator, page, setPage }) {
   const [selected1, setSelected1] = useState(false);

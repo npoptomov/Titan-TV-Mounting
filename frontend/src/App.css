@@ -33,3 +33,25 @@
     transform: rotate(360deg);
   }
 }
+
+.price{
+  font-weight: bold;
+  float: right;
+}
+
+.location-search-input{
+  color:black
+}
+
+.suggestion-item--active{
+  color:black
+}
+
+.suggestion-item{
+  color: black
+}
+
+.MuiFormHelperText-root{
+  color: white !important;
+}
+

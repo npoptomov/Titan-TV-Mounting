@@ -1,5 +1,5 @@
 import React from 'react';
-import BootstrapButton from '../../../consts';
+import { BootstrapButton } from '../../../consts';
 
 function BracketType({ data, setData, total, setTotal, iterator, page, setPage }) {
   return (

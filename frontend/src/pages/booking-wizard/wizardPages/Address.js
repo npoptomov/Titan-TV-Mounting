@@ -1,18 +1,25 @@
 import React from "react";
+import { CssTextField } from "../../../consts";
+import Box from '@mui/material/Box';
+import Stack from "@mui/material/Stack";
+import LocationSearchInput from "../../../components/LocationSearchInput";
+
 
 function Address({ address, setAddress }) {
   return (
-    <div>
-      <input
-        type="text"
-        name="address"
-        placeholder="Address"
-        value={address}
-        onChange={(event) => {
-          setAddress(event.target.value);
-        }}
-      />
-    </div>
+    <Box
+      component="form"
+      noValidate
+      autoComplete="off"
+    >
+      <Stack alignItems='center'>
+        <h1>Enter your Address</h1>
+        <br />
+        <LocationSearchInput address={address} setAddress={setAddress}></LocationSearchInput>
+      </Stack>
+    </Box>
+
+
   );
 }
 
