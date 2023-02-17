@@ -1,4 +1,5 @@
 {
+  "homepage": "https://npoptomov.github.io/",
   "name": "titan-tv-mounting-react",
   "version": "0.1.0",
   "private": true,
@@ -25,6 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

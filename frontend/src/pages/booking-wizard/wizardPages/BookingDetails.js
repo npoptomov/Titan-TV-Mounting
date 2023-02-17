@@ -28,7 +28,7 @@ function BookingDetails({ data, setData, total, setTotal, iterator, setIterator,
         ]);
         setIterator((i) => i + 1);
         setPage(0);
-        navigate("/");
+        navigate("/book");
     };
 
     const nextPage = () => {

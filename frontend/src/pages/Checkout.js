@@ -6,6 +6,7 @@ import CheckoutForm from "./CheckoutForm";
 import { BootstrapButton } from "../consts";
 import { Stack } from "@mui/material";
 import BookingDetails from "./booking-wizard/wizardPages/BookingDetails";
+import Extras from "./booking-wizard/wizardPages/Extras";
 
 function Checkout({ data, setData, total, iterator, setIterator, page, setPage }) {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function Checkout({ data, setData, total, iterator, setIterator, page, setPage }
       <Stack spacing={10} direction='column' justifyContent='center'>
         <Name name={name} setName={setName} />
         <Stack spacing={2} direction='row' justifyContent='center'>
-          <BootstrapButton style={{ width: '40%', fontSize: '20px' }} onClick={previousPage}>Back</BootstrapButton>
+          {/* <BootstrapButton style={{ width: '40%', fontSize: '20px' }} onClick={previousPage}>Back</BootstrapButton> */}
           <BootstrapButton style={{ width: '40%', fontSize: '20px' }} onClick={nextPage}>Next</BootstrapButton>
         </Stack>
       </Stack>
